@@ -23,7 +23,7 @@
 Clone the repository:
 
 ```sh
-git clone https://github.com/sumant326541/Aviv-QA-Web-Technical-Test.git
+git clone https://github.com/sumant326541/Demoblaze-graphql-Cypress.git
 ```
 install dependencies mentioned in package.json
 
