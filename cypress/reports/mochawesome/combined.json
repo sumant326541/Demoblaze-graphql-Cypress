@@ -1,0 +1,437 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 10,
+    "passes": 9,
+    "pending": 0,
+    "failures": 1,
+    "testsRegistered": 10,
+    "passPercent": 90,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2024-05-23T03:37:15.658Z",
+    "end": "2024-05-23T03:38:24.356Z",
+    "duration": 68698
+  },
+  "results": [
+    {
+      "uuid": "40b907d7-255d-42eb-bdcc-02b923881d22",
+      "title": "",
+      "fullFile": "cypress/e2e/apitest/apimulationtest.cy.js",
+      "file": "cypress/e2e/apitest/apimulationtest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7d6114f9-6487-4d23-8d20-a326822c8a1f",
+          "title": "GraphQL Countries API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Creates a new country and verifies it exists",
+              "fullTitle": "GraphQL Countries API Creates a new country and verifies it exists",
+              "timedOut": null,
+              "duration": 959,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('cypress/fixtures/createCountryMutation.graphql').then(query => {\n  cy.request({\n    method: 'POST',\n    url: _graphqlconfig.GRAPHQL_URL,\n    body: JSON.stringify({\n      query\n    }),\n    headers: _graphqlconfig.GRAPHQL_HEADERS\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('data');\n    const country = response.body.data.createCountry;\n    // Assert new country details\n    expect(country).to.have.property('code', 'AB');\n    expect(country).to.have.property('name', 'Testcountry');\n    expect(country).to.have.property('native', 'Testnative');\n    expect(country).to.have.property('capital', 'Testcapital');\n    expect(country).to.have.property('currency', 'TST');\n    expect(country).to.have.property('languages').that.is.an('array').with.length(1);\n    expect(country.languages[0]).to.have.property('code', 'TL');\n    expect(country.languages[0]).to.have.property('name', 'Testlang');\n    expect(country).to.have.property('continent');\n    expect(country.continent).to.have.property('code', 'EU');\n    expect(country.continent).to.have.property('name', 'TestEU');\n  });\n});\n// Verify the country was created by querying it\ncy.readFile('cypress/fixtures/countryByCodeQuery.graphql').then(query => {\n  const variables = {\n    code: \"AB\"\n  };\n  cy.request({\n    method: 'POST',\n    url: _graphqlconfig.GRAPHQL_URL,\n    body: JSON.stringify({\n      query,\n      variables\n    }),\n    headers: _graphqlconfig.GRAPHQL_HEADERS\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('data');\n    const country = response.body.data.country;\n    // Assert the created country details\n    expect(country).to.have.property('code', 'AB');\n    expect(country).to.have.property('name', 'Testcountry');\n    expect(country).to.have.property('native', 'Testnative');\n    expect(country).to.have.property('capital', 'Testcapital');\n    expect(country).to.have.property('currency', 'TST');\n    expect(country).to.have.property('languages').that.is.an('array').with.length(1);\n    expect(country.languages[0]).to.have.property('code', 'TL');\n    expect(country.languages[0]).to.have.property('name', 'Testlang');\n    expect(country).to.have.property('continent');\n    expect(country.continent).to.have.property('code', 'EU');\n    expect(country.continent).to.have.property('name', 'TestEU');\n  });\n});",
+              "err": {
+                "message": "TypeError: Cannot read properties of null (reading 'createCountry')",
+                "estack": "TypeError: Cannot read properties of null (reading 'createCountry')\n    at Context.eval (webpack://demoblaze-automation-cypress/./cypress/e2e/apitest/apimulationtest.cy.js:16:51)",
+                "diff": null
+              },
+              "uuid": "1b4c461a-8f7b-4425-831f-152855c989d5",
+              "parentUUID": "7d6114f9-6487-4d23-8d20-a326822c8a1f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "1b4c461a-8f7b-4425-831f-152855c989d5"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 959,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "7b470356-f12c-4c1a-8c55-912baf8f0742",
+      "title": "",
+      "fullFile": "cypress/e2e/apitest/apiqueriestest.cy.js",
+      "file": "cypress/e2e/apitest/apiqueriestest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8d7ee723-3f96-4335-8df5-5ba3bf8cadab",
+          "title": "GraphQL Countries API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Retrieves Andorra with correct continent information",
+              "fullTitle": "GraphQL Countries API Retrieves Andorra with correct continent information",
+              "timedOut": null,
+              "duration": 157,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('cypress/fixtures/countryByCodeQuery.graphql').then(query => {\n  const variables = {\n    code: \"AD\" // Use \"AD\" for testing Andorra\n  };\n  cy.request({\n    method: 'POST',\n    url: _graphqlconfig.GRAPHQL_URL,\n    body: JSON.stringify({\n      query,\n      variables\n    }),\n    headers: _graphqlconfig.GRAPHQL_HEADERS\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('data');\n    const country = response.body.data.country;\n    // Assert country details for Andorra\n    expect(country).to.have.property('name', 'Andorra');\n    expect(country).to.have.property('native', 'Andorra');\n    expect(country).to.have.property('capital');\n    expect(country).to.have.property('currency');\n    expect(country).to.have.property('languages').that.is.an('array');\n    // Assert continent information for Andorra\n    expect(country).to.have.property('continent');\n    expect(country.continent).to.have.property('code', 'EU');\n    expect(country.continent).to.have.property('name', 'Europe');\n  });\n});",
+              "err": {},
+              "uuid": "d3ea2150-45da-4234-a6be-af29fe5d1493",
+              "parentUUID": "8d7ee723-3f96-4335-8df5-5ba3bf8cadab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Retrieves all countries when no code is provided",
+              "fullTitle": "GraphQL Countries API Retrieves all countries when no code is provided",
+              "timedOut": null,
+              "duration": 170,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('cypress/fixtures/allCountriesQuery.graphql').then(query => {\n  cy.request({\n    method: 'POST',\n    url: _graphqlconfig.GRAPHQL_URL,\n    body: JSON.stringify({\n      query\n    }),\n    headers: _graphqlconfig.GRAPHQL_HEADERS\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('data');\n    expect(response.body.data).to.have.property('countries');\n    const countries = response.body.data.countries;\n    expect(countries).to.be.an('array').that.is.not.empty;\n  });\n});",
+              "err": {},
+              "uuid": "9b041564-f2c5-47a2-8754-95e54042fe0f",
+              "parentUUID": "8d7ee723-3f96-4335-8df5-5ba3bf8cadab",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d3ea2150-45da-4234-a6be-af29fe5d1493",
+            "9b041564-f2c5-47a2-8754-95e54042fe0f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 327,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "c72734a3-0ece-4b07-a366-28bb99e0af20",
+      "title": "",
+      "fullFile": "cypress/e2e/uitest/logintest.cy.js",
+      "file": "cypress/e2e/uitest/logintest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+          "title": "Verify User Login Scenario",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login to product store",
+              "fullTitle": "Verify User Login Scenario should login to product store",
+              "timedOut": null,
+              "duration": 5077,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture(\"logindata\").then(logindata => {\n  _loginPage.default.loginWithValidUser(logindata.email, logindata.password);\n  _homepage.default.validateLoggedInUser(logindata.email);\n});",
+              "err": {},
+              "uuid": "545ffa5c-90aa-42ea-b952-ff137cef9eee",
+              "parentUUID": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not login to product store and validate error message Wrong password.",
+              "fullTitle": "Verify User Login Scenario should not login to product store and validate error message Wrong password.",
+              "timedOut": null,
+              "duration": 4293,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_loginPage.default.loginWithValidUser(user, invalidpassword);\ncy.validateAlertMessage(errormsg);",
+              "err": {},
+              "uuid": "f308b0a3-fd2d-4356-8e77-e2c94a737701",
+              "parentUUID": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not login to product store and validate error message User does not exist.",
+              "fullTitle": "Verify User Login Scenario should not login to product store and validate error message User does not exist.",
+              "timedOut": null,
+              "duration": 4256,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_loginPage.default.loginWithValidUser(user, invalidpassword);\ncy.validateAlertMessage(errormsg);",
+              "err": {},
+              "uuid": "25726933-cd14-4263-a1c1-d97a538b28b1",
+              "parentUUID": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "545ffa5c-90aa-42ea-b952-ff137cef9eee",
+            "f308b0a3-fd2d-4356-8e77-e2c94a737701",
+            "25726933-cd14-4263-a1c1-d97a538b28b1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13626,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "88edcaef-f015-4335-b0d3-bc02c5719154",
+      "title": "",
+      "fullFile": "cypress/e2e/uitest/shoppingcarttest.cy.js",
+      "file": "cypress/e2e/uitest/shoppingcarttest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5cda811b-b0a2-4db6-bb41-d41d5e1c9eb8",
+          "title": "Verify shopping Cart Functionality",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should add and delete product to cart and verify the cart",
+              "fullTitle": "Verify shopping Cart Functionality should add and delete product to cart and verify the cart",
+              "timedOut": null,
+              "duration": 8340,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture(\"checkoutdata\").then(checkoutdata => {\n  _homepage.default.selectProductCatagory(checkoutdata.productcatagory);\n  _homepage.default.selectProductBytitle(checkoutdata.product);\n  _checkoutpage.default.addProductToCart(checkoutdata.productaddetocartmsg);\n  _homepage.default.goToCart();\n  _checkoutpage.default.validateProductAddedToCart(checkoutdata.product);\n  _checkoutpage.default.deleteFromCart();\n  _checkoutpage.default.validateProductDeletedFromCart(checkoutdata.product);\n});",
+              "err": {},
+              "uuid": "fda99e96-82f2-4350-8f67-08c0aaaa435d",
+              "parentUUID": "5cda811b-b0a2-4db6-bb41-d41d5e1c9eb8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should place order the product",
+              "fullTitle": "Verify shopping Cart Functionality should place order the product",
+              "timedOut": null,
+              "duration": 10939,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture(\"checkoutdata\").then(checkoutdata => {\n  _homepage.default.selectProductCatagory(checkoutdata.productcatagory);\n  _homepage.default.selectProductBytitle(checkoutdata.product);\n  _checkoutpage.default.addProductToCart(checkoutdata.productaddetocartmsg);\n  _homepage.default.goToCart();\n  _checkoutpage.default.validateProductAddedToCart(checkoutdata.product);\n  _checkoutpage.default.placeOrder(checkoutdata.name, checkoutdata.country, checkoutdata.city, checkoutdata.card, checkoutdata.month, checkoutdata.city, checkoutdata.card, checkoutdata.year);\n});",
+              "err": {},
+              "uuid": "1c1e67de-62e0-4219-9e4e-14333ab3cd23",
+              "parentUUID": "5cda811b-b0a2-4db6-bb41-d41d5e1c9eb8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fda99e96-82f2-4350-8f67-08c0aaaa435d",
+            "1c1e67de-62e0-4219-9e4e-14333ab3cd23"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 19279,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "580fa770-0fe4-49d0-b06d-28b05b3f2755",
+      "title": "",
+      "fullFile": "cypress/e2e/uitest/signuptest.cy.js",
+      "file": "cypress/e2e/uitest/signuptest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4895b7d8-ded1-4067-a2cc-1fe404065580",
+          "title": "User SignUp test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should signup with new user to product store",
+              "fullTitle": "User SignUp test should signup with new user to product store",
+              "timedOut": null,
+              "duration": 3077,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomData('signupdata'); // generate random email id\ncy.fixture(\"signupdata\").then(signupdata => {\n  _signuppage.default.signUpNewUser(signupdata.email, signupdata.password);\n});\ncy.fixture(\"constantdata\").then(constantdata => {\n  _signuppage.default.validateSuccessfullsignUp(constantdata.signupsuccessmsg);\n});",
+              "err": {},
+              "uuid": "8656986a-115a-47b7-9bf6-47cf7bda3f3a",
+              "parentUUID": "4895b7d8-ded1-4067-a2cc-1fe404065580",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not signup with existing user to product store",
+              "fullTitle": "User SignUp test should not signup with existing user to product store",
+              "timedOut": null,
+              "duration": 2456,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture(\"logindata\").then(logindata => {\n  _signuppage.default.signUpNewUser(logindata.email, logindata.password);\n});\ncy.fixture(\"constantdata\").then(constantdata => {\n  cy.validateAlertMessage(constantdata.useralreadyexistmsg);\n});",
+              "err": {},
+              "uuid": "66565c2c-f9ce-4741-abca-aea317d7f515",
+              "parentUUID": "4895b7d8-ded1-4067-a2cc-1fe404065580",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8656986a-115a-47b7-9bf6-47cf7bda3f3a",
+            "66565c2c-f9ce-4741-abca-aea317d7f515"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5533,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportFilename": "report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

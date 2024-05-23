@@ -1,0 +1,25 @@
+mutation {
+  createCountry(input: {
+    code: "AB",
+    name: "Testcountry",
+    native: "Testnative",
+    capital: "Testcapital",
+    currency: "TST",
+    languages: [{ code: "TL", name: "Testlang" }],
+    continent: { code: "EU",name:TestEU }
+  }) {
+    code
+    name
+    native
+    capital
+    currency
+    languages {
+      code
+      name
+    }
+    continent {
+      code
+      name
+    }
+  }
+}

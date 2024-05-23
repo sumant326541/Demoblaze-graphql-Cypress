@@ -1,0 +1,125 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-05-23T03:37:21.553Z",
+    "end": "2024-05-23T03:37:21.972Z",
+    "duration": 419,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7b470356-f12c-4c1a-8c55-912baf8f0742",
+      "title": "",
+      "fullFile": "cypress/e2e/apitest/apiqueriestest.cy.js",
+      "file": "cypress/e2e/apitest/apiqueriestest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8d7ee723-3f96-4335-8df5-5ba3bf8cadab",
+          "title": "GraphQL Countries API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Retrieves Andorra with correct continent information",
+              "fullTitle": "GraphQL Countries API Retrieves Andorra with correct continent information",
+              "timedOut": null,
+              "duration": 157,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('cypress/fixtures/countryByCodeQuery.graphql').then(query => {\n  const variables = {\n    code: \"AD\" // Use \"AD\" for testing Andorra\n  };\n  cy.request({\n    method: 'POST',\n    url: _graphqlconfig.GRAPHQL_URL,\n    body: JSON.stringify({\n      query,\n      variables\n    }),\n    headers: _graphqlconfig.GRAPHQL_HEADERS\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('data');\n    const country = response.body.data.country;\n    // Assert country details for Andorra\n    expect(country).to.have.property('name', 'Andorra');\n    expect(country).to.have.property('native', 'Andorra');\n    expect(country).to.have.property('capital');\n    expect(country).to.have.property('currency');\n    expect(country).to.have.property('languages').that.is.an('array');\n    // Assert continent information for Andorra\n    expect(country).to.have.property('continent');\n    expect(country.continent).to.have.property('code', 'EU');\n    expect(country.continent).to.have.property('name', 'Europe');\n  });\n});",
+              "err": {},
+              "uuid": "d3ea2150-45da-4234-a6be-af29fe5d1493",
+              "parentUUID": "8d7ee723-3f96-4335-8df5-5ba3bf8cadab",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Retrieves all countries when no code is provided",
+              "fullTitle": "GraphQL Countries API Retrieves all countries when no code is provided",
+              "timedOut": null,
+              "duration": 170,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.readFile('cypress/fixtures/allCountriesQuery.graphql').then(query => {\n  cy.request({\n    method: 'POST',\n    url: _graphqlconfig.GRAPHQL_URL,\n    body: JSON.stringify({\n      query\n    }),\n    headers: _graphqlconfig.GRAPHQL_HEADERS\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('data');\n    expect(response.body.data).to.have.property('countries');\n    const countries = response.body.data.countries;\n    expect(countries).to.be.an('array').that.is.not.empty;\n  });\n});",
+              "err": {},
+              "uuid": "9b041564-f2c5-47a2-8754-95e54042fe0f",
+              "parentUUID": "8d7ee723-3f96-4335-8df5-5ba3bf8cadab",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d3ea2150-45da-4234-a6be-af29fe5d1493",
+            "9b041564-f2c5-47a2-8754-95e54042fe0f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 327,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportFilename": "report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

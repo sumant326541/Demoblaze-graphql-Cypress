@@ -1,0 +1,41 @@
+// ***********************************************
+// This example commands.js shows you how to
+// create various custom commands and overwrite
+// existing commands.
+//
+// For more comprehensive examples of custom
+// commands please read more here:
+// https://on.cypress.io/custom-commands
+// ***********************************************
+//
+//
+// -- This is a parent command --
+// Cypress.Commands.add('login', (email, password) => { ... })
+//
+//
+// -- This is a child command --
+// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+//
+//
+// -- This is a dual command --
+// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
+//
+//
+// -- This will overwrite an existing command --
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const faker = require('faker');
+
+Cypress.Commands.add('generateRandomData', (fileName) => {
+  const randomData = {
+    email: faker.internet.email(),
+    password: "Test@123"
+    // Add more properties as needed
+  };
+  cy.writeFile(`cypress/fixtures/${fileName}.json`, randomData);
+});
+
+Cypress.Commands.add('validateAlertMessage',(alertMsg)=>{
+  cy.on('window:alert', (str) => {
+    expect(str).to.equal(alertMsg)
+})
+})

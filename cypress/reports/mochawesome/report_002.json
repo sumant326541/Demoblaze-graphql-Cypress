@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-05-23T03:37:26.469Z",
+    "end": "2024-05-23T03:37:43.634Z",
+    "duration": 17165,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c72734a3-0ece-4b07-a366-28bb99e0af20",
+      "title": "",
+      "fullFile": "cypress/e2e/uitest/logintest.cy.js",
+      "file": "cypress/e2e/uitest/logintest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+          "title": "Verify User Login Scenario",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login to product store",
+              "fullTitle": "Verify User Login Scenario should login to product store",
+              "timedOut": null,
+              "duration": 5077,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture(\"logindata\").then(logindata => {\n  _loginPage.default.loginWithValidUser(logindata.email, logindata.password);\n  _homepage.default.validateLoggedInUser(logindata.email);\n});",
+              "err": {},
+              "uuid": "545ffa5c-90aa-42ea-b952-ff137cef9eee",
+              "parentUUID": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not login to product store and validate error message Wrong password.",
+              "fullTitle": "Verify User Login Scenario should not login to product store and validate error message Wrong password.",
+              "timedOut": null,
+              "duration": 4293,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_loginPage.default.loginWithValidUser(user, invalidpassword);\ncy.validateAlertMessage(errormsg);",
+              "err": {},
+              "uuid": "f308b0a3-fd2d-4356-8e77-e2c94a737701",
+              "parentUUID": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not login to product store and validate error message User does not exist.",
+              "fullTitle": "Verify User Login Scenario should not login to product store and validate error message User does not exist.",
+              "timedOut": null,
+              "duration": 4256,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_loginPage.default.loginWithValidUser(user, invalidpassword);\ncy.validateAlertMessage(errormsg);",
+              "err": {},
+              "uuid": "25726933-cd14-4263-a1c1-d97a538b28b1",
+              "parentUUID": "ab731f09-2a64-418a-b76b-b053d19d4dce",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "545ffa5c-90aa-42ea-b952-ff137cef9eee",
+            "f308b0a3-fd2d-4356-8e77-e2c94a737701",
+            "25726933-cd14-4263-a1c1-d97a538b28b1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13626,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportFilename": "report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
