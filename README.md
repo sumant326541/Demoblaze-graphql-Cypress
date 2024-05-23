@@ -62,6 +62,7 @@ npm install
     ```js
     npm run posttest
     ```
+- Note: One api test case will fail as expected because of test API don't allow to create new country and update in database
 
 
 ## Screenshots
